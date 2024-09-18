@@ -16,7 +16,6 @@ Explanation: This query retrieves all employees whose job titles start with "Sen
 
 ## 2. Country with the Most Invoices
 ```sql
-Copy code
 SELECT TOP 1 billing_country, COUNT(*)
 FROM invoice
 GROUP BY billing_country
@@ -25,14 +24,12 @@ ORDER BY COUNT(*) DESC;
 Explanation: This query returns the country with the highest number of invoices by counting how many invoices are associated with each billing country and then sorting them in descending order.
 ## 3. Top 3 Invoice Values
 ```sql
-Copy code
 SELECT TOP 3 * FROM invoice
 ORDER BY total DESC;
 ```
 Explanation: This query retrieves the top 3 invoices based on the highest total invoice amount.
 ## 4. City with the Best Customers
 ```sql
-Copy code
 SELECT TOP 1 billing_city, SUM(total)
 FROM invoice
 GROUP BY billing_city
@@ -116,7 +113,7 @@ Explanation: This query returns the amount spent by each customer on artists, sh
 
 ## 10. Top Genre by Country
 ```sql
-Copy code
+
 SELECT t1.country, MAX(t1.purchase)
 FROM (
     SELECT customer.country, genre.name, COUNT(invoice_line_id) AS purchase
@@ -133,7 +130,7 @@ Explanation: This query returns the top genre by country based on the number of 
 
 ## 11. Top Customer by Country
 ```sql
-Copy code
+
 WITH ranked_customers AS (
     SELECT customer.first_name + ' ' + customer.last_name AS customer_name, billing_country, SUM(total) AS total_spending, ROW_NUMBER() OVER (PARTITION BY billing_country ORDER BY SUM(total) DESC) AS rank
     FROM customer
